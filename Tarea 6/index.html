@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Aleatorio </title>
+  <style>
+    body {
+      background-color: #f53f9a;
+      color: #000000;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #5f0707;
+    }
+
+    #cuadro {
+      width: 200px;
+      height: 200px;
+      background-color: #52f343;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, transform 0.2s;
+      cursor: pointer;
+    }
+
+    #cuadro:hover {
+      transform: scale(1.05);
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Haz click ☝️ y veras la magia ✨ </h1>
+  <div id="cuadro"></div>
+  <p id="estado">Mouse fuera del cuadro</p>
+
+  <script>
+    const cuadro = document.getElementById("cuadro");
+    const estado = document.getElementById("estado");
+    let mouseEncima = false;
+
+    cuadro.addEventListener("mouseenter", () => {
+      mouseEncima = true;
+      estado.textContent = "Mouse dentro del cuadro";
+    });
+
+    cuadro.addEventListener("mouseleave", () => {
+      mouseEncima = false;
+      estado.textContent = "Mouse fuera del cuadro";
+    });
+
+    function colorAleatorio() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    cuadro.addEventListener("click", () => {
+      if (mouseEncima) {
+        cuadro.style.backgroundColor = colorAleatorio();
+      }
+    });
+  </script>
+</body>
+</html>
